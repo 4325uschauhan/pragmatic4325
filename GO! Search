@@ -1,1 +1,66 @@
+# PYTHON BASED GO! SEARCH BAR
+# Language used - Python
+# GUI(Graphical user interface) - Python Tkinter
+
+from tkinter import *
+from tkinter import ttk
+import time
+from tkinter.ttk import Progressbar
+import webbrowser
+root = Tk()
+
+root.title("Go Search")
+root.configure(background='burlywood2')
+
+#w = Label(root, text="Helvetica", font=("Helvetica", 16))
+
+l1 = Label(root, fg="indian red", text="Search",font="Helvetica 20 bold", bg="burlywood2")
+root.geometry('600x160')
+l1.pack()
+
+e = Entry(root, width=50, borderwidth=10, bg="light yellow", fg="teal", font="Helvetica 15 bold")
+e.pack()
+e.focus()
+
+l2 = Label(root, fg="blue", text="Press Enter!",font=("Helvetica", 12), bg="burlywood2")
+l2.pack()
+
+copylabel = Label(root, text=" - Made by Ujjwal", fg="grey", bg="burlywood2")
+copylabel.pack()
+
+
+progress=Progressbar(root,orient=HORIZONTAL,length=600,mode='determinate')
+def bar():
+    import time
+    progress['value']=20
+    root.update_idletasks()
+    time.sleep(1)
+    progress['value']=50
+    root.update_idletasks()
+    time.sleep(1)
+    progress['value']=80
+    root.update_idletasks()
+    time.sleep(1)
+    progress['value']=100
+
+def on_cchange(event):
+    
+    s = e.get()
+    url = "www.google.com/search?btnG=1&q=%s"%(s)
+    bar()
+    webbrowser.open(url)
+    quity()
+
+     
+    
+def quity():
+    root.destroy()
+
+progress.pack()
+
+e.bind("<Return>", on_cchange)
+
+root.mainloop()
+
+
 
